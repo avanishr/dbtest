@@ -41,7 +41,6 @@ class ViewController: UIViewController {
         view.addConstraints([topConstraint, middleConstraint, widthConstraint, heightConstraint])
     }
     
-    
     private func addUpdateView() {
         updateView = generateLabel(label: "Update", textColor: UIColor.black, backgroundColor: UIColor.green)
         let tap = UITapGestureRecognizer(target: self, action: #selector(updateRecord))
@@ -109,6 +108,5 @@ class ViewController: UIViewController {
     @objc func displayRecords() {
         print("records displayed")
     }
-
 }
 
