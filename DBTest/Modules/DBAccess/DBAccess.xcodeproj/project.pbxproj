@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06C77C41217B6EF00010DAF4 /* DBQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C77C40217B6EF00010DAF4 /* DBQuery.swift */; };
+		06C77C43217B6F230010DAF4 /* DBRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C77C42217B6F230010DAF4 /* DBRecord.swift */; };
 		164E118C217A387C00304355 /* DBAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 164E118A217A387C00304355 /* DBAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		164E119C217A39A000304355 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 164E119B217A39A000304355 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06C77C40217B6EF00010DAF4 /* DBQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBQuery.swift; sourceTree = "<group>"; };
+		06C77C42217B6F230010DAF4 /* DBRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRecord.swift; sourceTree = "<group>"; };
 		164E1187217A387C00304355 /* DBAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DBAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		164E118A217A387C00304355 /* DBAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBAccess.h; sourceTree = "<group>"; };
 		164E118B217A387C00304355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 			children = (
 				164E118A217A387C00304355 /* DBAccess.h */,
 				164E118B217A387C00304355 /* Info.plist */,
+				06C77C40217B6EF00010DAF4 /* DBQuery.swift */,
+				06C77C42217B6F230010DAF4 /* DBRecord.swift */,
 			);
 			path = DBAccess;
 			sourceTree = "<group>";
@@ -107,6 +113,7 @@
 				TargetAttributes = {
 					164E1186217A387C00304355 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -142,6 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06C77C43217B6F230010DAF4 /* DBRecord.swift in Sources */,
+				06C77C41217B6EF00010DAF4 /* DBQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +282,7 @@
 		164E1190217A387C00304355 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -290,6 +300,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.epic.DBAccess;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -298,6 +309,7 @@
 		164E1191217A387C00304355 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

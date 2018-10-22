@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DBAccess
 
 class ViewController: UIViewController {
     var insertView: UILabel?
@@ -18,7 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupView()
     }
-
+    
     private func setupView() {
         addInsertView()
         addUpdateView()
@@ -94,19 +95,24 @@ class ViewController: UIViewController {
     }
     
     @objc func insertRecord() {
-        print("record inserted")
+        let propertyDef: DBPropertyDefinition = DBPropertyDefinition(name: "categoryID", type: .string, isMultipleResponse: false)
+        let properties: [DBProperty] = [DBProperty(type: propertyDef, value: "abc123")]
+        let record: DBRecord = DBRecord(identifier: "aaa", type: DBRecordType.category, properties: properties)
+        DBQuery.insert(record: record)
     }
     
     @objc func updateRecord() {
-        print("record updated")
+        let properties: [DBProperty] = []
+        let record: DBRecord = DBRecord(identifier: "aaa", type: DBRecordType.category, properties: properties)
+        DBQuery.update(record: record)
     }
     
     @objc func removeRecord() {
-        print("record deleted")
+        DBQuery.delete(recordWithID: "aaa")
     }
     
     @objc func displayRecords() {
-        print("records displayed")
+        let record = DBQuery.find(recordWithID: "aaa")
     }
 }
 
