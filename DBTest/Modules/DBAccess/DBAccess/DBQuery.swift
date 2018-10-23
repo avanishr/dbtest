@@ -33,7 +33,8 @@ public class DBQuery {
     }
     
     public static func find(recordWithID: String) -> DBRecord {
-        print("find record by ID")
+        initDB()
+        fetch(recordWithID: recordWithID)
         let properties: [DBProperty] = []
         let record: DBRecord = DBRecord(identifier: "aaa", type: DBRecordType.category, properties: properties)
         return record
@@ -107,31 +108,35 @@ public class DBQuery {
     }
     
     private static func fetch(recordWithID: String) {
-        let queryString: String = "SELECT * FROM Records WHERE "
+        let queryString: String = "SELECT * FROM Records WHERE id = ?;"
         var queryStatement: OpaquePointer? = nil
+        var dataPrinted: Bool = false
         
-        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
-            // 2
-            if sqlite3_step(queryStatement) == SQLITE_ROW {
-                // 3
-                let id = sqlite3_column_int(queryStatement, 0)
+        if sqlite3_prepare_v2(db, queryString, -1, &queryStatement, nil) == SQLITE_OK {
+            
+            let nsRecordID: NSString = recordWithID as NSString
+            sqlite3_bind_text(queryStatement, 1, nsRecordID.utf8String, -1, nil)
+            
+            while (sqlite3_step(queryStatement) == SQLITE_ROW) {
                 
-                // 4
-                let queryResultCol1 = sqlite3_column_text(queryStatement, 1)
-                let name = String(cString: queryResultCol1!)
+                let queryResultCol1 = sqlite3_column_text(queryStatement, 0)
+                let queryResultCol2 = sqlite3_column_text(queryStatement, 1)
+                let queryResultCol3 = sqlite3_column_text(queryStatement, 2)
                 
-                // 5
+                let recordID = String(cString: queryResultCol1!)
+                let propertyName = String(cString: queryResultCol2!)
+                let propertyValue = String(cString: queryResultCol3!)
+                dataPrinted = true
                 print("Query Result:")
-                print("\(id) | \(name)")
+                print("\(recordID) | \(propertyName) | \(propertyValue)")
+            }
                 
-            } else {
+            if (dataPrinted == false) {
                 print("Query returned no results")
             }
         } else {
             print("SELECT statement could not be prepared")
         }
-        
-        // 6
         sqlite3_finalize(queryStatement)
     }
 
